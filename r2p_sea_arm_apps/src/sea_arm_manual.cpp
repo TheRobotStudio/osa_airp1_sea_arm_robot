@@ -47,7 +47,7 @@
 #include <flann/flann.hpp> //used for the kdtree search
 #include <stdio.h>
 //ROS packages include 
-#include "bibot_apps/robotDefines.h"
+#include "r2p_sea_arm_apps/robotDefines.h"
 
 /*** Defines ***/
 #define LOOP_RATE			HEART_BEAT

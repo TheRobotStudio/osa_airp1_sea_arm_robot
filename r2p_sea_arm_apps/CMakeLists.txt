@@ -98,7 +98,7 @@ include_directories(/usr/include/eigen3)
 # )
 
 ## Declare a cpp executable
-add_executable(osa_xbox_joy_conductor src/xbox_joy_conductor.cpp)
+#add_executable(osa_xbox_joy_conductor src/xbox_joy_conductor.cpp)
 add_executable(osa_r2p_sea_arm_manual src/sea_arm_manual.cpp) 
 
 ## Add cmake target dependencies of the executable/library
@@ -107,7 +107,7 @@ add_executable(osa_r2p_sea_arm_manual src/sea_arm_manual.cpp)
 # add_dependencies(example4 osa_control_gencfg)		#TODO
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(osa_xbox_joy_conductor ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
+#target_link_libraries(osa_xbox_joy_conductor ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 target_link_libraries(osa_r2p_sea_arm_manual ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 
 #############
