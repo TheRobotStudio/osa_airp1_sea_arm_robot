@@ -1,0 +1,3 @@
+int32 current
+---
+osa_msgs/MotorCmdMultiArray motorCmdMultiArray

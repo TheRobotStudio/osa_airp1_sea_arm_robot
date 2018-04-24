@@ -1,0 +1,5 @@
+#slaveNb from 1 to 6
+int32 slaveNb
+int32 current
+---
+osa_msgs/MotorCmdMultiArray motorCmdMultiArray

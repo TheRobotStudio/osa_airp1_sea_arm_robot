@@ -1,0 +1,13 @@
+<package>
+  <name>r2p_sea_arm_bringup</name>
+  <version>0.1.1</version>
+  <description>Launch files and scripts needed to bring the R2P SEA Arm up into a running state.</description>
+  <maintainer email="cyril.jourdan@therobotstudio.com">Cyril Jourdan</maintainer>
+
+  <license>Simplified BSD</license>
+
+  <author>Cyril Jourdan</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

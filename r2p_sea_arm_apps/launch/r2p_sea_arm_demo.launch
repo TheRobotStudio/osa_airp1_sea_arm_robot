@@ -1,0 +1,5 @@
+<launch>
+	<include file="$(find r2p_sea_arm_bringup)/launch/r2p_sea_arm_bringup.launch">
+		<arg name="can_ns" value="sea_arm" />
+	</include>
+</launch>
