@@ -40,8 +40,8 @@
 #include <osa_msgs/MotorDataMultiArray.h>
 #include <std_msgs/Bool.h>
 //ROS services
-#include "bibot_apps/switchNode.h"
-#include "bibot_apps/getSlaveCmdArray.h"
+#include "r2p_sea_arm_apps/switchNode.h"
+#include "r2p_sea_arm_apps/getSlaveCmdArray.h"
 //Others
 #include <boost/foreach.hpp>
 #include <flann/flann.hpp> //used for the kdtree search
@@ -180,14 +180,14 @@ void joy_cb(const sensor_msgs::JoyConstPtr& joy)
 }
 
 /*** Services ***/
-bool switchNode(bibot_apps::switchNode::Request  &req, bibot_apps::switchNode::Response &res)
+bool switchNode(r2p_sea_arm_apps::switchNode::Request  &req, r2p_sea_arm_apps::switchNode::Response &res)
 {
 	//ROS_INFO("switch node");
 	switch_node = req.state;
 	return true;
 }
 
-bool getMotorCmd_ma(bibot_apps::getSlaveCmdArray::Request  &req, bibot_apps::getSlaveCmdArray::Response &res)
+bool getMotorCmd_ma(r2p_sea_arm_apps::getSlaveCmdArray::Request  &req, r2p_sea_arm_apps::getSlaveCmdArray::Response &res)
 {
 	//ROS_INFO("cmd srv");
 
@@ -224,7 +224,7 @@ int main (int argc, char** argv)
 	//ROS_INFO("Initialization of the kd-tree :");
 
 	//read a bag to generate the data matrix
-	rosbag::Bag bag(ros::package::getPath("bibot_apps") + "/bag/arm/imuRawToShoulder_1.bag"); //change this bag
+	rosbag::Bag bag(ros::package::getPath("r2p_sea_arm_apps") + "/bag/arm/imuRawToShoulder_1.bag"); //change this bag
 	//rosbag::View view_joint(bag, rosbag::TopicQuery("/imuRaw")); //angle info
 	rosbag::View view_posture(bag, rosbag::TopicQuery("/motor_data_array")); //motor data position info
 

@@ -39,8 +39,8 @@
 #include <std_msgs/Int16MultiArray.h>
 //#include <std_msgs/Bool.h>
 //ROS services
-#include "bibot_apps/switchNode.h"
-#include "bibot_apps/getSlaveCmdArray.h"
+#include "r2p_sea_arm_apps/switchNode.h"
+#include "r2p_sea_arm_apps/getSlaveCmdArray.h"
 //other
 //#include <stdio.h>
 //ROS packages include 
@@ -74,7 +74,7 @@ void joy_cb(const sensor_msgs::JoyConstPtr& joy)
 }
 
 /*** Services ***/
-bool switchNode(bibot_apps::switchNode::Request  &req, bibot_apps::switchNode::Response &res)
+bool switchNode(r2p_sea_arm_apps::switchNode::Request  &req, r2p_sea_arm_apps::switchNode::Response &res)
 {
 	switch_node = req.state;
 	return true;
@@ -99,27 +99,27 @@ int main(int argc, char** argv)
 	
 	//Services
 	ros::ServiceServer srv_switchNode = nh.advertiseService("switch_xbox_joy_conductor", switchNode);
-	ros::ServiceClient srvClt_switchArmManual = nh.serviceClient<bibot_apps::switchNode>("switch_right_arm_manual_srv");
-	ros::ServiceClient srvClt_getArmManualCmd = nh.serviceClient<bibot_apps::getSlaveCmdArray>("get_right_arm_manual_cmd_srv");
-	ros::ServiceClient srvClt_switchMobileBaseManual = nh.serviceClient<bibot_apps::switchNode>("switch_mobile_base_manual_srv");
-	ros::ServiceClient srvClt_getMobileBaseManualCmd = nh.serviceClient<bibot_apps::getSlaveCmdArray>("get_mobile_base_manual_cmd_srv");
-	ros::ServiceClient srvClt_switchMobileBaseFollower = nh.serviceClient<bibot_apps::switchNode>("switch_mobile_base_follower_srv");
-	ros::ServiceClient srvClt_getMobileBaseFollowerCmd = nh.serviceClient<bibot_apps::getSlaveCmdArray>("get_mobile_base_follower_cmd_srv");
-	ros::ServiceClient srvClt_switchHeadFaceTracking = nh.serviceClient<bibot_apps::switchNode>("switch_head_face_tracking_srv");
-	ros::ServiceClient srvClt_getHeadFaceTrackingCmd = nh.serviceClient<bibot_apps::getSlaveCmdArray>("get_head_face_tracking_cmd_srv");
+	ros::ServiceClient srvClt_switchArmManual = nh.serviceClient<r2p_sea_arm_apps::switchNode>("switch_right_arm_manual_srv");
+	ros::ServiceClient srvClt_getArmManualCmd = nh.serviceClient<r2p_sea_arm_apps::getSlaveCmdArray>("get_right_arm_manual_cmd_srv");
+	ros::ServiceClient srvClt_switchMobileBaseManual = nh.serviceClient<r2p_sea_arm_apps::switchNode>("switch_mobile_base_manual_srv");
+	ros::ServiceClient srvClt_getMobileBaseManualCmd = nh.serviceClient<r2p_sea_arm_apps::getSlaveCmdArray>("get_mobile_base_manual_cmd_srv");
+	ros::ServiceClient srvClt_switchMobileBaseFollower = nh.serviceClient<r2p_sea_arm_apps::switchNode>("switch_mobile_base_follower_srv");
+	ros::ServiceClient srvClt_getMobileBaseFollowerCmd = nh.serviceClient<r2p_sea_arm_apps::getSlaveCmdArray>("get_mobile_base_follower_cmd_srv");
+	ros::ServiceClient srvClt_switchHeadFaceTracking = nh.serviceClient<r2p_sea_arm_apps::switchNode>("switch_head_face_tracking_srv");
+	ros::ServiceClient srvClt_getHeadFaceTrackingCmd = nh.serviceClient<r2p_sea_arm_apps::getSlaveCmdArray>("get_head_face_tracking_cmd_srv");
 
-	//ros::ServiceClient srvClt_switchCaffe = nh.serviceClient<bibot_apps::getSlaveCmdArray>("switch_caffe");
-	//ros::ServiceClient srvClt_switchSound = nh.serviceClient<bibot_apps::getSlaveCmdArray>("switch_sound");
+	//ros::ServiceClient srvClt_switchCaffe = nh.serviceClient<r2p_sea_arm_apps::getSlaveCmdArray>("switch_caffe");
+	//ros::ServiceClient srvClt_switchSound = nh.serviceClient<r2p_sea_arm_apps::getSlaveCmdArray>("switch_sound");
 	
-	bibot_apps::getSlaveCmdArray srv_getSlaveCmdArrayArmManual;
-	bibot_apps::getSlaveCmdArray srv_getSlaveCmdArrayMobileBaseManual;
-	bibot_apps::getSlaveCmdArray srv_getSlaveCmdArrayMobileBaseFollower;
-	bibot_apps::getSlaveCmdArray srv_getSlaveCmdArrayHeadFaceTracking;
+	r2p_sea_arm_apps::getSlaveCmdArray srv_getSlaveCmdArrayArmManual;
+	r2p_sea_arm_apps::getSlaveCmdArray srv_getSlaveCmdArrayMobileBaseManual;
+	r2p_sea_arm_apps::getSlaveCmdArray srv_getSlaveCmdArrayMobileBaseFollower;
+	r2p_sea_arm_apps::getSlaveCmdArray srv_getSlaveCmdArrayHeadFaceTracking;
 
-	bibot_apps::switchNode srv_switchNodeArmManual;
-	bibot_apps::switchNode srv_switchNodeMobileBaseManual;
-	bibot_apps::switchNode srv_switchNodeMobileBaseFollower;
-	bibot_apps::switchNode srv_switchNodeHeadFaceTracking;
+	r2p_sea_arm_apps::switchNode srv_switchNodeArmManual;
+	r2p_sea_arm_apps::switchNode srv_switchNodeMobileBaseManual;
+	r2p_sea_arm_apps::switchNode srv_switchNodeMobileBaseFollower;
+	r2p_sea_arm_apps::switchNode srv_switchNodeHeadFaceTracking;
 
 	srv_switchNodeArmManual.request.state = false;
 	srv_switchNodeMobileBaseManual.request.state = false;
