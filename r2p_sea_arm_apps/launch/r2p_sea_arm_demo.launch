@@ -2,4 +2,10 @@
 	<include file="$(find r2p_sea_arm_bringup)/launch/r2p_sea_arm_bringup.launch">
 		<arg name="can_ns" value="sea_arm" />
 	</include>
+
+	<node name="osa_waldo_joy_node" pkg="osa_communication" type="osa_waldo_joy" output="screen" respawn="true"/>
+
+	<node name="osa_sea_arm_teleop" pkg="r2p_sea_arm_apps" type="osa_r2p_sea_arm_manual" output="screen" respawn="true" launch-prefix="xterm -e"/>
+	<node name="osa_waldo_joy_conductor" pkg="r2p_sea_arm_apps" type="osa_waldo_joy_conductor" output="screen" respawn="true"/>
+
 </launch>

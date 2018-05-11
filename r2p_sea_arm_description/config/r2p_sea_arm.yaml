@@ -19,6 +19,7 @@
 # motor:
 #    NONE
 #    DCX10
+#    DCX12
 #    DCX14
 #    DCX16
 #    DCX22
@@ -49,13 +50,17 @@
 
 robot:
   name: 'r2p_sea_arm'
-  dof: 4  # Number of Degrees Of Freedom.
+  dof: 6  # Number of Degrees Of Freedom.
   can_device: 'can1'
   heartbeat: 50
 
 # Base
-dof1: {name: 'shoulder/pitch', type: 'SEA', node_id: 1, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
-dof2: {name: 'shoulder/yaw', type: 'SEA', node_id: 2, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
-dof3: {name: 'shoulder/humerus', type: 'SEA', node_id: 3, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
-dof4: {name: 'elbow/elbow', type: 'SEA', node_id: 4, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
+dof1: {name: 'shoulder/pitch', type: 'SEA', node_id: 1, controller: 'EPOS2', motor: 'EC32F_24', inverted: true, mode: 'PROFILE_POSITION_MODE', value: 0}
+dof2: {name: 'shoulder/yaw', type: 'SEA', node_id: 2, controller: 'EPOS2', motor: 'EC32F_24', inverted: true, mode: 'PROFILE_POSITION_MODE', value: 0}
+dof3: {name: 'shoulder/humerus', type: 'SEA', node_id: 3, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
+dof4: {name: 'elbow/elbow', type: 'SEA', node_id: 4, controller: 'EPOS2', motor: 'EC32F_24', inverted: true, mode: 'PROFILE_POSITION_MODE', value: 0}
+
+#Head
+dof5: {name: 'head/pan', type: 'CLASSICAL', node_id: 5, controller: 'EPOS2', motor: 'DCX12', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
+dof6: {name: 'head/tilt', type: 'CLASSICAL', node_id: 6, controller: 'EPOS2', motor: 'DCX12', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
 
