@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <!-- We use a custom world for the r2p_sea_arm so that the camera angle is launched correctly -->
+
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Focus camera -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>0 1.5 0.75 0.000000 0.3 -1.6</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>

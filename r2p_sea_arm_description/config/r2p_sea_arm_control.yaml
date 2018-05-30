@@ -1,0 +1,23 @@
+r2p_sea_arm:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+  
+  # Position Controllers ---------------------------------------
+  joint_base_shoulder_pitch_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_base_shoulder_pitch
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_shoulder_pitch_yaw_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_shoulder_pitch_yaw
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_shoulder_yaw_upper_arm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_shoulder_yaw_upper_arm
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  joint_upper_arm_forearm_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_upper_arm_forearm
+    pid: {p: 100.0, i: 0.01, d: 10.0}

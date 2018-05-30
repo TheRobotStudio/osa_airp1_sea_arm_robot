@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<!-- Robot Reference Platform - Series Elastic Actuator Arm -->
+<robot name="r2p_sea_arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Constants for robot dimensions -->
+  <xacro:property name="width" value="0.1" />   <!-- Beams are square in length and width -->
+  <xacro:property name="height1" value="2" />   <!-- Link 1 -->
+  <xacro:property name="height2" value="1" />   <!-- Link 2 -->
+  <xacro:property name="height3" value="1" />   <!-- Link 3 -->
+  <xacro:property name="axle_offset" value="0.05" /> <!-- Space between joint and end of beam -->
+  <xacro:property name="damp" value="0.7" />    <!-- damping coefficient -->
+
+  <!-- Base Link -->
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>	    
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_arm_base.dae"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_arm_base_collision.dae"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- Joint between Base Link and Shoulder Pitch Link -->
+  <joint name="joint_base_shoulder_pitch" type="revolute">
+    <parent link="base_link"/>
+    <child link="shoulder_pitch_link"/>
+    <origin xyz="0.011 0 0.126" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="${damp}"/>
+    <limit effort="100.0" velocity="0.5" lower="-0.19" upper="3.0" />
+  </joint>
+
+  <!-- Shoulder Pitch Link -->
+  <link name="shoulder_pitch_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_shoulder_pitch.dae"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_shoulder_pitch_collision.dae"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+  <!-- Joint between Shoulder Pitch Link and Shoulder Yaw Link -->
+  <joint name="joint_shoulder_pitch_yaw" type="revolute">
+    <parent link="shoulder_pitch_link"/>
+    <child link="shoulder_yaw_link"/>
+    <origin xyz="0.069 0.066 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="${damp}"/>
+    <limit effort="100.0" velocity="0.5" lower="-3.14" upper="0" />
+  </joint>
+
+  <!-- Shoulder Yaw Link -->
+  <link name="shoulder_yaw_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_shoulder_yaw.dae"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_shoulder_yaw_collision.dae"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+  
+  <!-- Joint between Shoulder Yaw Link and Upper Arm Link -->
+  <joint name="joint_shoulder_yaw_upper_arm" type="revolute">
+    <parent link="shoulder_yaw_link"/>
+    <child link="upper_arm_link"/>
+    <origin xyz="0 -0.057 -0.108" rpy="0 0 0.785"/>
+    <axis xyz="0 0 1"/>
+    <dynamics damping="${damp}"/>
+    <limit effort="100.0" velocity="0.5" lower="-1.57" upper="1.57" />
+  </joint>
+
+  <!-- Upper Arm Link -->
+  <link name="upper_arm_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_upper_arm.dae"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_upper_arm_collision.dae"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+  
+  <!-- Joint between Upper Arm Link and Forearm Link -->
+  <joint name="joint_upper_arm_forearm" type="revolute">
+    <parent link="upper_arm_link"/>
+    <child link="forearm_link"/>
+    <origin xyz="0.024 0.024 -0.197" rpy="0 0 0.785"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="${damp}"/>
+    <limit effort="100.0" velocity="0.5" lower="-2.6" upper="0" />
+  </joint>
+
+  <!-- Forearm Link -->
+  <link name="forearm_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_forearm.dae"/>
+      </geometry>
+    </visual>
+
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+	    <mesh filename="package://r2p_sea_arm_description/meshes/r2p_sea_forearm_collision.dae"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia
+	  ixx="1.0" ixy="0.0" ixz="0.0"
+	  iyy="1.0" iyz="0.0"
+	  izz="1.0"/>
+    </inertial>
+  </link>
+
+</robot>
