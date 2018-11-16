@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: r2p_sea_arm_description
+    relative_path: urdf/r2p_sea_arm_gazebo.xacro
+  SRDF:
+    relative_path: config/r2p_sea_arm.srdf
+  CONFIG:
+    author_name: Cyril Jourdan
+    author_email: cyril.jourdan@therobotstudio.com
+    generated_timestamp: 1527674713
