@@ -162,7 +162,7 @@ int main (int argc, char** argv)
 				
 				float targetPosition[4] = {0};
 		
-				targetPosition[0] = -((waldo_joy.axes[0] - 3200)*2000/(12000-3200));
+				targetPosition[0] = -((waldo_joy.axes[0] - 3200)*5000/(12000-3200));
 				targetPosition[1] = ((waldo_joy.axes[1] - 12800)*1000/(17000-12800));
 				targetPosition[2] = -((waldo_joy.axes[2])- 6000)*1000/(8000-5000);
 				targetPosition[3] = -((waldo_joy.axes[3] - 6400)*2000/(20700-6400));
