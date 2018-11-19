@@ -145,7 +145,8 @@ int main (int argc, char** argv)
 		{
 			if(waldo_joy_arrived)
 			{
-				// **********************************Arm position from Waldo readings*******************************************     
+				// *** RIGHT ARM WALDO ***//
+				// **********************************Arm position from Waldo readings*******************************************
 				//An0: Shoulder Pitch 3200 - 12000
 				//An1: Shoulder Yaw 12800 - 17000
 				//An2: Humerus Rotation 8000 internal - 5000 external
@@ -159,13 +160,37 @@ int main (int argc, char** argv)
 				//Dig5: Button 2
 				//Dig6: Buttton 3
 				//Dig7: Button 4
-				
+			/*
 				float targetPosition[4] = {0};
-		
+
 				targetPosition[0] = -((waldo_joy.axes[0] - 3200)*5000/(12000-3200));
 				targetPosition[1] = ((waldo_joy.axes[1] - 12800)*1000/(17000-12800));
 				targetPosition[2] = -((waldo_joy.axes[2])- 6000)*1000/(8000-5000);
 				targetPosition[3] = -((waldo_joy.axes[3] - 6400)*2000/(20700-6400));
+			*/
+
+				// *** LEFT ARM WALDO ***//
+				// **********************************Arm position from Waldo readings*******************************************     
+				//An0: Shoulder Pitch  down 27000 up 16000 // 3200 - 12000
+				//An1: Shoulder Yaw down 21000 up 17000 // 12800 - 17000
+				//An2: Humerus Rotation in 25000 out 28000 // 8000 internal - 5000 external
+				//An3: Elbow down 20000 up 8000 // 6400 straight - 20700 fully bent
+				//An4: Forearm Rotation
+				//An5: Joy twist middle 16620 29540 cw 2056 ccw
+				//An6: Joy pitch middle 14619 64 forwards 32375 backwards
+				//An7: Joy Yaw middle 14000 to 14400 hard to use due to forearm rotation
+				//Dig0-3: Thumb joy
+				//Dig4: Main trigger 1
+				//Dig5: Button 2
+				//Dig6: Buttton 3
+				//Dig7: Button 4
+				
+				float targetPosition[4] = {0};
+		
+				targetPosition[0] = -((waldo_joy.axes[0] - 16000)*5000/(27000-16000));
+				targetPosition[1] = ((waldo_joy.axes[1] - 17000)*1000/(21000-17000));
+				targetPosition[2] = -((waldo_joy.axes[2])- 25000)*1000/(28000-25000);
+				targetPosition[3] = ((waldo_joy.axes[3] - 8000)*2000/(20000-8000));
 
 				if(waldo_joy.buttons[4] == 1)
 				{
