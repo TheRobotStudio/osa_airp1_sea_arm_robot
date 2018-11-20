@@ -49,7 +49,7 @@
 
 /*** Defines ***/
 #define LOOP_RATE			HEART_BEAT
-#define NB_DOF 4
+#define NB_DOF 5 //4
 
 //MIN MAX
 #define MIN_POS_SHOULDER_PITCH		0
@@ -185,16 +185,32 @@ int main (int argc, char** argv)
 				//Dig6: Buttton 3
 				//Dig7: Button 4
 				
-				float targetPosition[4] = {0};
+				float targetPosition[NB_DOF] = {0};
 		
-				targetPosition[0] = -((waldo_joy.axes[0] - 16000)*5000/(27000-16000));
-				targetPosition[1] = ((waldo_joy.axes[1] - 17000)*1000/(21000-17000));
-				targetPosition[2] = -((waldo_joy.axes[2])- 25000)*1000/(28000-25000);
-				targetPosition[3] = ((waldo_joy.axes[3] - 8000)*2000/(20000-8000));
+				targetPosition[0] = -((waldo_joy.axes[0] - 27000)*10000/(27000-16000));
+				targetPosition[1] = -((waldo_joy.axes[1] - 21000)*800/(21000-17000));
+				targetPosition[2] = ((waldo_joy.axes[2] -  25000)*1300/(28000-25000)) - 600;
+				targetPosition[3] = -((waldo_joy.axes[3] - 20000)*1650/(20000-8000));
 
+				//Clip
+				if(targetPosition[0] > 10000) targetPosition[0] = 10000; 
+				if(targetPosition[0] < 0) targetPosition[0] = 0; 
+				
+				if(targetPosition[1] > 800) targetPosition[1] = 800; 
+				if(targetPosition[1] < 0) targetPosition[1] = 0; 
+
+				if(targetPosition[2] > 600) targetPosition[2] = 600; 
+				if(targetPosition[2] < -700) targetPosition[2] = -700; 
+
+				if(targetPosition[3] > 1650) targetPosition[3] = 1650; 
+				if(targetPosition[3] < 0) targetPosition[3] = 0; 
+
+				if(waldo_joy.buttons[5] == 0) targetPosition[4] = 10000; //open hand
+				else targetPosition[4] = 16500; //close hand
+				
 				if(waldo_joy.buttons[4] == 1)
 				{
-					for(int i=0; i<NB_DOF; i++)
+					for(int i=0; i<NB_DOF; i++) 
 					{
 						motor_cmd_ma.motor_cmd[i].node_id = i+1;
 						motor_cmd_ma.motor_cmd[i].command = SET_TARGET_POSITION;
