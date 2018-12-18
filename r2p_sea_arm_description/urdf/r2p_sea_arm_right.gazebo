@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<robot>
+
+  <!-- ros_control plugin -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/r2p2_sea_arm_right</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+    </plugin>
+  </gazebo>
+
+  <!-- Right Arm Link -->
+  <gazebo reference="right_arm_link">
+  </gazebo>
+
+  <!-- Right Shoulder Pitch Link -->
+  <gazebo reference="right_shoulder_pitch_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+  </gazebo>
+  
+  <!-- Right Shoulder Yaw Link -->
+  <gazebo reference="right_shoulder_yaw_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+  </gazebo>
+
+  <!-- Right Upper Arm Link -->
+  <gazebo reference="right_upper_arm_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+  </gazebo>
+
+  <!-- Right Elbow Elements -->
+  <gazebo reference="right_elbow_link">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+  </gazebo>
+
+</robot>
