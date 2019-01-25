@@ -60,8 +60,3 @@ dof2: {name: 'arm/shoulder/yaw', type: 'SEA', node_id: 2, controller: 'EPOS2', m
 dof3: {name: 'arm/shoulder/humerus', type: 'SEA', node_id: 3, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
 dof4: {name: 'arm/elbow', type: 'SEA', node_id: 4, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
 dof5: {name: 'arm/hand', type: 'TENDON', node_id: 5, controller: 'EPOS2', motor: 'RE25', inverted: false, mode: 'CURRENT_MODE', value: 150}
-
-#Head
-#dof5: {name: 'head/pan', type: 'CLASSICAL', node_id: 5, controller: 'EPOS2', motor: 'DCX12', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
-#dof6: {name: 'head/tilt', type: 'CLASSICAL', node_id: 6, controller: 'EPOS2', motor: 'DCX12', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
-
