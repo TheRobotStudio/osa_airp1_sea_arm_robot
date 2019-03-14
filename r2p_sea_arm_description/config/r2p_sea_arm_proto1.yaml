@@ -26,6 +26,7 @@
 #    DCX32
 #    RE13
 #    RE30
+#    ECI30
 #    ECI40
 #    ECI52
 #    EC32F_12
@@ -55,8 +56,9 @@ robot:
   heartbeat: 50
 
 # Base
-dof1: {name: 'arm/shoulder/pitch', type: 'SEA', node_id: 1, controller: 'EPOS4', motor: 'DCX22', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
+dof1: {name: 'arm/shoulder/pitch', type: 'SEA', node_id: 1, controller: 'EPOS4', motor: 'ECI30', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
 dof2: {name: 'arm/shoulder/yaw', type: 'SEA', node_id: 2, controller: 'EPOS2', motor: 'EC32F_24', inverted: true, mode: 'CURRENT_MODE', value: 0}
 dof3: {name: 'arm/shoulder/humerus', type: 'SEA', node_id: 3, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
 dof4: {name: 'arm/elbow', type: 'SEA', node_id: 4, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
+#TODO move dof5 to simple_hand package
 dof5: {name: 'arm/hand', type: 'TENDON', node_id: 5, controller: 'EPOS2', motor: 'RE25', inverted: false, mode: 'CURRENT_MODE', value: 150}
