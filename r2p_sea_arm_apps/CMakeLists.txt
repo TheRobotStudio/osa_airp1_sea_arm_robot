@@ -99,10 +99,13 @@ include_directories(/usr/include/eigen3)
 
 ## Declare a cpp executable
 add_executable(osa_waldo_joy_conductor src/waldo_joy_conductor.cpp)
-add_executable(osa_r2p_sea_arm_manual src/sea_arm_manual.cpp) 
+add_executable(osa_r2p_sea_arm_waldo_joy src/sea_arm_waldo_joy.cpp) 
 
 add_executable(osa_xbox_joy_conductor src/xbox_joy_conductor.cpp)
 add_executable(osa_r2p_sea_arm_xbox_joy src/sea_arm_xbox_joy.cpp) 
+
+add_executable(osa_two_xbox_joy_conductor src/two_xbox_joy_conductor.cpp)
+add_executable(osa_r2p_sea_arm_two_xbox_joy src/sea_arm_two_xbox_joy.cpp) 
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -111,9 +114,11 @@ add_executable(osa_r2p_sea_arm_xbox_joy src/sea_arm_xbox_joy.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(osa_waldo_joy_conductor ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
-target_link_libraries(osa_r2p_sea_arm_manual ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
+target_link_libraries(osa_r2p_sea_arm_waldo_joy ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 target_link_libraries(osa_r2p_sea_arm_xbox_joy ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 target_link_libraries(osa_xbox_joy_conductor ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
+target_link_libraries(osa_r2p_sea_arm_two_xbox_joy ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
+target_link_libraries(osa_two_xbox_joy_conductor ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 
 #############
 ## Install ##

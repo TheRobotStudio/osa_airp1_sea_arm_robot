@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016, The Robot Studio
+ * Copyright (c) 2019, The Robot Studio
  *  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -115,7 +115,7 @@ int main (int argc, char** argv)
 	ros::Rate r(LOOP_RATE);
 
 	//Subscribers
-	ros::Subscriber sub_joy = nh.subscribe ("/waldo_joy", 10, waldo_joy_cb);
+	ros::Subscriber sub_joy = nh.subscribe ("/joy", 10, waldo_joy_cb);
 
 	//Services
 	ros::ServiceServer srv_switchNode = nh.advertiseService("switch_right_arm_manual_srv", switchNode);
@@ -137,6 +137,8 @@ int main (int argc, char** argv)
 		motor_cmd_ma.motor_cmd[i].value = 0;
 	}
 
+	float targetPosition[NB_DOF] = {0};
+
 	while(ros::ok())
 	{	
 		ros::spinOnce();
@@ -145,71 +147,79 @@ int main (int argc, char** argv)
 		{
 			if(waldo_joy_arrived)
 			{
-				// *** RIGHT ARM WALDO ***//
-				// **********************************Arm position from Waldo readings*******************************************
-				//An0: Shoulder Pitch 3200 - 12000
-				//An1: Shoulder Yaw 12800 - 17000
-				//An2: Humerus Rotation 8000 internal - 5000 external
-				//An3: Elbow 6400 straight - 20700 fully bent
-				//An4: Forearm Rotation
-				//An5: Joy twist middle 16620 29540 cw 2056 ccw
-				//An6: Joy pitch middle 14619 64 forwards 32375 backwards
-				//An7: Joy Yaw middle 14000 to 14400 hard to use due to forearm rotation
-				//Dig0-3: Thumb joy
-				//Dig4: Main trigger 1
-				//Dig5: Button 2
-				//Dig6: Buttton 3
-				//Dig7: Button 4
-			/*
-				float targetPosition[4] = {0};
-
-				targetPosition[0] = -((waldo_joy.axes[0] - 3200)*5000/(12000-3200));
-				targetPosition[1] = ((waldo_joy.axes[1] - 12800)*1000/(17000-12800));
-				targetPosition[2] = -((waldo_joy.axes[2])- 6000)*1000/(8000-5000);
-				targetPosition[3] = -((waldo_joy.axes[3] - 6400)*2000/(20700-6400));
-			*/
-
-				// *** LEFT ARM WALDO ***//
-				// **********************************Arm position from Waldo readings*******************************************     
-				//An0: Shoulder Pitch  down 27000 up 16000 // 3200 - 12000
-				//An1: Shoulder Yaw down 21000 up 17000 // 12800 - 17000
-				//An2: Humerus Rotation in 25000 out 28000 // 8000 internal - 5000 external
-				//An3: Elbow down 20000 up 8000 // 6400 straight - 20700 fully bent
-				//An4: Forearm Rotation
-				//An5: Joy twist middle 16620 29540 cw 2056 ccw
-				//An6: Joy pitch middle 14619 64 forwards 32375 backwards
-				//An7: Joy Yaw middle 14000 to 14400 hard to use due to forearm rotation
-				//Dig0-3: Thumb joy
-				//Dig4: Main trigger 1
-				//Dig5: Button 2
-				//Dig6: Buttton 3
-				//Dig7: Button 4
+				if(waldo_joy.buttons[6] == 1)
+                                {
+					// *** RIGHT ARM WALDO ***//
+					// **********************************Arm position from Waldo readings*******************************************
+					//An0: Shoulder Pitch 3200 - 12000
+					//An1: Shoulder Yaw 12800 - 17000
+					//An2: Humerus Rotation 8000 internal - 5000 external
+					//An3: Elbow 6400 straight - 20700 fully bent
+					//An4: Forearm Rotation
+					//An5: Joy twist middle 16620 29540 cw 2056 ccw
+					//An6: Joy pitch middle 14619 64 forwards 32375 backwards
+					//An7: Joy Yaw middle 14000 to 14400 hard to use due to forearm rotation
+					//Dig0-3: Thumb joy
+					//Dig4: Main trigger 1
+					//Dig5: Button 2
+					//Dig6: Buttton 3
+					//Dig7: Button 4
 				
-				float targetPosition[NB_DOF] = {0};
-		
-				targetPosition[0] = -((waldo_joy.axes[0] - 27000)*10000/(27000-16000));
-				targetPosition[1] = -((waldo_joy.axes[1] - 21000)*800/(21000-17000));
-				targetPosition[2] = ((waldo_joy.axes[2] -  25000)*1300/(28000-25000)) - 600;
-				targetPosition[3] = -((waldo_joy.axes[3] - 20000)*1650/(20000-8000));
+//					float targetPosition[NB_DOF] = {0};
 
-				//Clip
-				if(targetPosition[0] > 10000) targetPosition[0] = 10000; 
-				if(targetPosition[0] < 0) targetPosition[0] = 0; 
+					targetPosition[0] = ((waldo_joy.axes[0] - 3200)*100000/(12000-3200));
+					targetPosition[1] = ((waldo_joy.axes[1] - 12800)*1000/(17000-12800));
+					targetPosition[2] = -((waldo_joy.axes[2])- 6000)*1000/(8000-5000);
+					targetPosition[3] = ((waldo_joy.axes[3] - 6400)*2000/(20700-6400));
 				
-				if(targetPosition[1] > 800) targetPosition[1] = 800; 
-				if(targetPosition[1] < 0) targetPosition[1] = 0; 
 
-				if(targetPosition[2] > 600) targetPosition[2] = 600; 
-				if(targetPosition[2] < -700) targetPosition[2] = -700; 
+					// *** LEFT ARM WALDO ***//
+					// **********************************Arm position from Waldo readings*******************************************     
+					//An0: Shoulder Pitch  down 27000 up 16000 // 3200 - 12000
+					//An1: Shoulder Yaw down 21000 up 17000 // 12800 - 17000
+					//An2: Humerus Rotation in 25000 out 28000 // 8000 internal - 5000 external
+					//An3: Elbow down 20000 up 8000 // 6400 straight - 20700 fully bent
+					//An4: Forearm Rotation
+					//An5: Joy twist middle 16620 29540 cw 2056 ccw
+					//An6: Joy pitch middle 14619 64 forwards 32375 backwards
+					//An7: Joy Yaw middle 14000 to 14400 hard to use due to forearm rotation
+					//Dig0-3: Thumb joy
+					//Dig4: Main trigger 1
+					//Dig5: Button 2
+					//Dig6: Buttton 3
+					//Dig7: Button 4
+				/*	
+					float targetPosition[NB_DOF] = {0};
+			
+					targetPosition[0] = -((waldo_joy.axes[0] - 27000)*10000/(27000-16000));
+					targetPosition[1] = -((waldo_joy.axes[1] - 21000)*800/(21000-17000));
+					targetPosition[2] = ((waldo_joy.axes[2] -  25000)*1300/(28000-25000)) - 600;
+					targetPosition[3] = -((waldo_joy.axes[3] - 20000)*1650/(20000-8000));
+	*/
+					//Clip
+					if(targetPosition[0] > 100000) targetPosition[0] = 100000; 
+					if(targetPosition[0] < 0) targetPosition[0] = 0; 
+					
+					if(targetPosition[1] > 800) targetPosition[1] = 800; 
+					if(targetPosition[1] < 0) targetPosition[1] = 0; 
 
-				if(targetPosition[3] > 1650) targetPosition[3] = 1650; 
-				if(targetPosition[3] < 0) targetPosition[3] = 0; 
+					if(targetPosition[2] > 600) targetPosition[2] = 600; 
+					if(targetPosition[2] < -700) targetPosition[2] = -700; 
 
-				if(waldo_joy.buttons[5] == 0) targetPosition[4] = 10000; //open hand
-				else targetPosition[4] = 16500; //close hand
-				
-				if(waldo_joy.buttons[4] == 1)
-				{
+					if(targetPosition[3] > 1650) targetPosition[3] = 1650; 
+					if(targetPosition[3] < 0) targetPosition[3] = 0; 
+
+					int inc = 50;
+
+					if(waldo_joy.buttons[2] == 1) targetPosition[4] += 500*inc;
+					if(waldo_joy.buttons[0] == 1) targetPosition[4] -= 500*inc;
+
+					if(targetPosition[4] > 22000) targetPosition[4] = 22000; 
+					if(targetPosition[4] < 0) targetPosition[4] = 0; 
+
+					//if(waldo_joy.buttons[5] == 0) targetPosition[4] = 0; //open hand
+					//else targetPosition[4] = 17500; //close hand
+					
 					for(int i=0; i<NB_DOF; i++) 
 					{
 						motor_cmd_ma.motor_cmd[i].node_id = i+1;

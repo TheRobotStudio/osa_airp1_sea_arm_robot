@@ -48,7 +48,7 @@
 
 /*** Defines ***/
 #define LOOP_RATE	HEART_BEAT //50
-#define NB_DOF 6
+#define NB_DOF 9
 
 /*** Variables ***/
 bool joy_arrived = false;
@@ -59,7 +59,6 @@ osa_msgs::MotorCmdMultiArray armMotorCmd_ma;
 //booleans
 bool switch_node = false; //disable by default
 bool armManual_enabled = false;
-bool headFaceTracking_enabled = true;
 
 /*** Callback functions ***/
 void joy_cb(const sensor_msgs::JoyConstPtr& joy)
@@ -79,33 +78,26 @@ bool switchNode(r2p_sea_arm_apps::switchNode::Request  &req, r2p_sea_arm_apps::s
 int main(int argc, char** argv)
 {
 	//Initialize ROS
-	ros::init(argc, argv, "osa_waldo_conductor_node");
+	ros::init(argc, argv, "osa_arm_conductor_node");
 	ros::NodeHandle nh;
 
 	ros::Rate r(LOOP_RATE);
 
 	//Publishers
 	ros::Publisher pub_setRightArmCommand = nh.advertise<osa_msgs::MotorCmdMultiArray>("/sea_arm/motor_cmd_to_filter", 1); //100	
-	//ros::Publisher pub_setHeadCommand = nh.advertise<osa_msgs::MotorCmdMultiArray>("/head/motor_cmd_to_filter", 1); //set_mobile_base_cmd
 
 	//Subscribers
 	//ros::Subscriber sub_joy = nh.subscribe ("/joy", 10, joy_cb);
 	
 	//Services
-	ros::ServiceServer srv_switchNode = nh.advertiseService("switch_waldo_joy_conductor", switchNode);
+	ros::ServiceServer srv_switchNode = nh.advertiseService("switch_xbox_joy_conductor", switchNode);
 	ros::ServiceClient srvClt_switchArmManual = nh.serviceClient<r2p_sea_arm_apps::switchNode>("switch_right_arm_manual_srv");
 	ros::ServiceClient srvClt_getArmManualCmd = nh.serviceClient<r2p_sea_arm_apps::getSlaveCmdArray>("get_right_arm_manual_cmd_srv");	
-	//ros::ServiceClient srvClt_switchHeadFaceTracking = nh.serviceClient<r2p_sea_arm_apps::switchNode>("switch_head_face_tracking_srv");
-	//ros::ServiceClient srvClt_getHeadFaceTrackingCmd = nh.serviceClient<r2p_sea_arm_apps::getSlaveCmdArray>("get_head_face_tracking_cmd_srv");
 	
 	r2p_sea_arm_apps::getSlaveCmdArray srv_getSlaveCmdArrayArmManual;	
-	//r2p_sea_arm_apps::getSlaveCmdArray srv_getSlaveCmdArrayHeadFaceTracking;
-
 	r2p_sea_arm_apps::switchNode srv_switchNodeArmManual;
-	//r2p_sea_arm_apps::switchNode srv_switchNodeHeadFaceTracking;
 
 	srv_switchNodeArmManual.request.state = true;
-	//srv_switchNodeHeadFaceTracking.request.state = true;
 
 	//create the commands multi array
 	armMotorCmd_ma.layout.dim.push_back(std_msgs::MultiArrayDimension());
@@ -118,7 +110,6 @@ int main(int argc, char** argv)
 
 	for(int i=0; i<NB_DOF; i++)
 	{
-		//armMotorCmd_ma.motor_cmd[i].slaveBoardID = BIBOT_ARM_SLAVEBOARD_ID;
 		armMotorCmd_ma.motor_cmd[i].node_id = i+1;
 		armMotorCmd_ma.motor_cmd[i].command = SEND_DUMB_MESSAGE;
 		armMotorCmd_ma.motor_cmd[i].value = 0;
