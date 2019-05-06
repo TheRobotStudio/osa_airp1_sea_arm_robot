@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<launch>
+	<include file="$(find r2p_sea_arm_bringup)/launch/r2p_sea_arm_two_bringup.launch">
+		<arg name="can_ns" value="sea_arm" />
+	</include>
+
+
+	<node name="osa_xboxjoy_node0" pkg="joy" type="joy_node" output="screen" respawn="true">
+            <param name="dev" type="string" value="/dev/input/js0" />
+        </node>
+
+	<node name="osa_sea_arm_arcade_switch" pkg="r2p_sea_arm_apps" type="osa_r2p_sea_arm_arcade_switch_xbox_joy" output="screen" respawn="true" launch-prefix="xterm -e"/>
+	<node name="osa_xbox_joy_conductor" pkg="r2p_sea_arm_apps" type="osa_two_xbox_joy_conductor" output="screen" respawn="true"/>
+
+</launch>

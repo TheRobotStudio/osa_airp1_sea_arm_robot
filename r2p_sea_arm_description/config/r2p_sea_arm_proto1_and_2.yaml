@@ -57,14 +57,14 @@ robot:
 
 # Base
 dof1: {name: 'arm/right/shoulder/pitch', type: 'SEA', node_id: 1, controller: 'EPOS4', motor: 'ECI30', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
-dof2: {name: 'arm/right/shoulder/yaw', type: 'SEA', node_id: 2, controller: 'EPOS2', motor: 'EC32F_24', inverted: true, mode: 'CURRENT_MODE', value: 0}
-dof3: {name: 'arm/right/shoulder/humerus', type: 'SEA', node_id: 3, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
-dof4: {name: 'arm/right/elbow', type: 'SEA', node_id: 4, controller: 'EPOS2', motor: 'EC32F_24', inverted: false, mode: 'CURRENT_MODE', value: 0}
+dof2: {name: 'arm/right/shoulder/yaw', type: 'SEA', node_id: 2, controller: 'EPOS2', motor: 'EC32F_12', inverted: true, mode: 'CURRENT_MODE', value: 0}
+dof3: {name: 'arm/right/shoulder/humerus', type: 'SEA', node_id: 3, controller: 'EPOS2', motor: 'EC32F_12', inverted: false, mode: 'CURRENT_MODE', value: 0}
+dof4: {name: 'arm/right/elbow', type: 'SEA', node_id: 4, controller: 'EPOS2', motor: 'EC32F_12', inverted: false, mode: 'CURRENT_MODE', value: 0}
 dof5: {name: 'arm/right/hand', type: 'TENDON', node_id: 5, controller: 'EPOS2', motor: 'RE25', inverted: false, mode: 'CURRENT_MODE', value: 150}
 
 dof6: {name: 'arm/left/shoulder/pitch', type: 'SEA', node_id: 6, controller: 'EPOS4', motor: 'ECI30', inverted: true, mode: 'PROFILE_POSITION_MODE', value: 0}
-dof7: {name: 'arm/left/shoulder/yaw', type: 'SEA', node_id: 7, controller: 'EPOS4', motor: 'EC32F_24', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
-dof8: {name: 'arm/left/shoulder/humerus', type: 'SEA', node_id: 8, controller: 'EPOS4', motor: 'EC32F_24', inverted: true, mode: 'PROFILE_POSITION_MODE', value: 0}
-dof9: {name: 'arm/left/elbow', type: 'SEA', node_id: 9, controller: 'EPOS4', motor: 'EC32F_24', inverted: true, mode: 'PROFILE_POSITION_MODE', value: 0}
+dof7: {name: 'arm/left/shoulder/yaw', type: 'SEA', node_id: 7, controller: 'EPOS4', motor: 'EC32F_12', inverted: false, mode: 'PROFILE_POSITION_MODE', value: 0}
+dof8: {name: 'arm/left/shoulder/humerus', type: 'SEA', node_id: 8, controller: 'EPOS4', motor: 'EC32F_12', inverted: true, mode: 'PROFILE_POSITION_MODE', value: 0}
+dof9: {name: 'arm/left/elbow', type: 'SEA', node_id: 9, controller: 'EPOS4', motor: 'EC32F_12', inverted: true, mode: 'PROFILE_POSITION_MODE', value: 0}
 #dof5: {name: 'arm/hand', type: 'TENDON', node_id: 5, controller: 'EPOS4', motor: 'RE25', inverted: false, mode: 'CURRENT_MODE', value: 150}
 
