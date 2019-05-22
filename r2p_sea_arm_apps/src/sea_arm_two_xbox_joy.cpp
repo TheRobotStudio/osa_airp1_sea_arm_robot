@@ -168,6 +168,9 @@ int main (int argc, char** argv)
 					if(targetPosition[8] > 1650) targetPosition[8] = 1650; 
 					if(targetPosition[8] < 0) targetPosition[8] = 0; 
 
+					//MISTAKE USE A 159:1 gearbox on left elbow instead of 190:1 
+					float tempPos = targetPosition[8]*159/190; 
+					targetPosition[8] = (int)tempPos; 
 					//if(targetPosition[9] > 22000) targetPosition[9] = 22000; 
 					//if(targetPosition[9] < 0) targetPosition[9] = 0; 
 				}	
@@ -243,6 +246,9 @@ int main (int argc, char** argv)
 
 					if(targetPosition[4] > 22000) targetPosition[4] = 22000; 
 					if(targetPosition[4] < 0) targetPosition[4] = 0; 
+					//MISTAKE USE A 159:1 gearbox on left elbow instead of 190:1 
+					float tempPos = targetPosition[8]*159/190; 
+					targetPosition[8] = (int)tempPos; 
 				}
 
 				if((xbox_joy.buttons[4] == 0) && (xbox_joy.buttons[5] == 0) && (xbox_joy.buttons[3] == 1)) //both hands symetry
@@ -287,6 +293,9 @@ int main (int argc, char** argv)
 
 					if(targetPosition[4] > 22000) targetPosition[4] = 22000; 
 					if(targetPosition[4] < 0) targetPosition[4] = 0; 
+					//MISTAKE USE A 159:1 gearbox on left elbow instead of 190:1 
+					float tempPos = targetPosition[8]*159/190; 
+					targetPosition[8] = (int)tempPos; 
 				}
 					// *** RIGHT ARM WALDO ***//
 					// **********************************Arm position from Waldo readings*******************************************
@@ -339,6 +348,7 @@ int main (int argc, char** argv)
 					//if(xbox_joy.buttons[5] == 0) targetPosition[4] = 0; //open hand
 					//else targetPosition[4] = 17500; //close hand
 
+					
 					//Send motor commands	
 					for(int i=0; i<NB_DOF; i++) 
 					{

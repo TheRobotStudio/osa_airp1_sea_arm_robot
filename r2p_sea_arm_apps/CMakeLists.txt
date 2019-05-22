@@ -109,6 +109,7 @@ add_executable(osa_r2p_sea_arm_two_xbox_joy src/sea_arm_two_xbox_joy.cpp)
 
 add_executable(osa_r2p_sea_arm_table_xbox_joy src/sea_arm_table_xbox_joy.cpp) 
 add_executable(osa_r2p_sea_arm_arcade_switch_xbox_joy src/arcade_switch_xbox_joy.cpp) 
+#add_executable(osa_r2p_sea_arm_arcade_sequence src/arcade_sequence.cpp) 
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -123,6 +124,7 @@ target_link_libraries(osa_xbox_joy_conductor ${catkin_LIBRARIES} ${Eigen_INCLUDE
 target_link_libraries(osa_r2p_sea_arm_two_xbox_joy ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 target_link_libraries(osa_r2p_sea_arm_table_xbox_joy ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 target_link_libraries(osa_r2p_sea_arm_arcade_switch_xbox_joy ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
+#target_link_libraries(osa_r2p_sea_arm_arcade_sequence ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 target_link_libraries(osa_two_xbox_joy_conductor ${catkin_LIBRARIES} ${Eigen_INCLUDE_DIRS})
 
 #############
