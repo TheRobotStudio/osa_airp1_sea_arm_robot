@@ -1,0 +1,22 @@
+<launch>
+
+  <arg name="left_right" />
+  
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find airp1_sea_arm_description)/config/airp1_sea_arm_$(arg left_right)_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="control_spawner" pkg="controller_manager" type="spawner" respawn="false"
+	output="screen" ns="/airp1_sea_arm_$(arg left_right)" args="joint_state_controller
+					  $(arg left_right)_arm_shoulder_pitch_joint_position_controller
+					  $(arg left_right)_shoulder_pitch_shoulder_yaw_joint_position_controller
+                      $(arg left_right)_shoulder_yaw_upper_arm_joint_position_controller
+                      $(arg left_right)_upper_arm_elbow_joint_position_controller"/>
+
+  <!-- convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+	respawn="false" output="screen">
+    <remap from="/joint_states" to="/airp1_sea_arm_$(arg left_right)/joint_states" />
+  </node>
+
+</launch>

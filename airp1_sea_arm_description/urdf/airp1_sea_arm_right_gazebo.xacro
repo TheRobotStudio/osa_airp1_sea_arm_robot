@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!-- Robot Reference Platform for Prototyping - Right Series Elastic Actuator Arm version 01 -->
+<robot name="airp1_sea_arm_right_gazebo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Constants -->  
+  
+  <!-- Import Gazebo elements -->
+  <xacro:include filename="$(find airp1_sea_arm_description)/urdf/airp1_sea_arm_right.gazebo" />
+      
+  <!-- Import the Right SEA Arm 01 -->
+  <xacro:include filename="$(find airp1_sea_arm_description)/urdf/airp1_sea_arm_right.xacro" />    
+  
+  <transmission name="transmission1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_arm_shoulder_pitch_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="transmission2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_shoulder_pitch_shoulder_yaw_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  
+  <transmission name="transmission3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_shoulder_yaw_upper_arm_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="transmission4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="right_upper_arm_elbow_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor4">
+      <hardwareInterface>PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+</robot>
