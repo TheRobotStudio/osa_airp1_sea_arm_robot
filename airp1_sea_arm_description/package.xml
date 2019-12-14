@@ -1,0 +1,12 @@
+<package>
+  <name>airp1_sea_arm_description</name>
+  <version>0.1.1</version>
+  <description>Config files that describe the AIRP1 SEA Arm.</description>
+  <maintainer email="conatct@therobotstudio.com">Rob Knight</maintainer>
+
+  <license>BSD</license>
+
+  <author>Cyril Jourdan</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

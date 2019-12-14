@@ -1,7 +1,0 @@
-controller_list:
-  - name: fake_arm_controller
-    joints:
-      - joint_base_shoulder_pitch
-      - joint_shoulder_pitch_yaw
-      - joint_shoulder_yaw_upper_arm
-      - joint_upper_arm_forearm

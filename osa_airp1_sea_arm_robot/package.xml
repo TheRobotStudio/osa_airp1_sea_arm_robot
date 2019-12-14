@@ -1,0 +1,24 @@
+<package>
+  <name>osa_airp1_sea_arm_robot</name>
+  <version>0.1.1</version>
+  <description>Stack for AIRP1 SEA Arm</description>
+  <maintainer email="contact@therobotstudio.com">Rob Knight</maintainer>
+
+  <license>BSD</license>
+
+  <url type="GitHub repository">https://github.com/TheRobotStudio</url>
+  <url type="OSA website">http://opensourceandroid.org/</url>
+
+  <author>Cyril Jourdan</author>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <run_depend>osa_msgs</run_depend>
+  <run_depend>osa_common</run_depend>
+  <run_depend>osa_communication</run_depend>
+  <run_depend>osa_control</run_depend>
+
+  <export>
+    <metapackage/>
+  </export>
+</package>

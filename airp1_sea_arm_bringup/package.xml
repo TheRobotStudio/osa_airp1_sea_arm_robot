@@ -1,0 +1,13 @@
+<package>
+  <name>airp1_sea_arm_bringup</name>
+  <version>0.1.1</version>
+  <description>Launch files and scripts needed to bring the AIRP1 SEA Arm up into a running state.</description>
+  <maintainer email="contact@therobotstudio.com">Rob Knight</maintainer>
+
+  <license>BSD</license>
+
+  <author>Cyril Jourdan</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<launch>
+	<include file="$(find airp1_sea_arm_bringup)/launch/airp1_sea_arm_two_bringup.launch">
+		<arg name="can_ns" value="sea_arm" />
+	</include>
+
+<!-- Suppose the joy node is already running -->
+
+	<node name="osa_sea_arm_teleop" pkg="airp1_sea_arm_apps" type="osa_airp1_sea_arm_two_xbox_joy" output="screen" respawn="true" launch-prefix="xterm -e"/>
+	<node name="osa_xbox_joy_conductor" pkg="airp1_sea_arm_apps" type="osa_two_xbox_joy_conductor" output="screen" respawn="true"/>
+
+</launch>

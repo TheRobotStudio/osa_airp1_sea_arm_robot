@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<launch>
+	<include file="$(find airp1_sea_arm_bringup)/launch/airp1_sea_arm_bringup.launch">
+		<arg name="can_ns" value="sea_arm" />
+	</include>
+
+	<!-- Assume the waldo joy none has been launched -->
+	<!-- node name="osa_waldo_joy_node" pkg="osa_communication" type="osa_waldo_joy" output="screen" respawn="true"/-->
+
+	<node name="osa_sea_arm_waldo_teleop" pkg="airp1_sea_arm_apps" type="osa_airp1_sea_arm_waldo_joy" output="screen" respawn="true" launch-prefix="xterm -e"/>
+	<node name="osa_waldo_joy_conductor" pkg="airp1_sea_arm_apps" type="osa_waldo_joy_conductor" output="screen" respawn="true"/>
+
+</launch>
